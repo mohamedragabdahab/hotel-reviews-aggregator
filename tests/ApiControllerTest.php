@@ -13,12 +13,12 @@ class ApiControllerTest extends WebTestCase
         $client->request('GET', '/api/average?hotelId=1');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertEquals('6.25', $client->getResponse()->getContent());
+        $this->assertEquals('6.2500', $client->getResponse()->getContent());
 
         $client->request('GET', '/api/average?hotelId=2');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertEquals('7.5', $client->getResponse()->getContent());
+        $this->assertEquals('7.5000', $client->getResponse()->getContent());
     }
 
     public function testException()

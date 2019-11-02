@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ReviewRepository")
  */
 class Review
 {
@@ -17,9 +18,9 @@ class Review
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="hotel_id", type="integer")
      */
-    private $hotel_id;
+    private $hotelId;
 
     /**
      * @ORM\Column(type="string")
@@ -47,16 +48,16 @@ class Review
      */
     public function getHotelId()
     {
-        return $this->hotel_id;
+        return $this->hotelId;
     }
 
     /**
-     * @param mixed $hotel_id
+     * @param mixed $hotelId
      * @return Review
      */
-    public function setHotelId($hotel_id)
+    public function setHotelId($hotelId)
     {
-        $this->hotel_id = $hotel_id;
+        $this->hotelId = $hotelId;
         return $this;
     }
 

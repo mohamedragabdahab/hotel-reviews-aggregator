@@ -16,12 +16,13 @@ class ApiController extends Controller
     {
         $hotelId = $request->get('hotelId');
 
-        if ($hotelId === null) {
+        if (is_null($hotelId)) {
             throw new \Exception('Hotel not found.');
         }
 
-        $em = $this->container->get('doctrine.orm.entity_manager');
-        $average = $em->getConnection()->executeQuery('SELECT avg(score) as score FROM review WHERE hotel_id = '.$hotelId)->fetch(\PDO::FETCH_ASSOC);
+        $average = $this->getDoctrine()
+            ->getRepository('App:Review')
+            ->getScoreAverage($hotelId);
 
         return new Response($average['score']);
     }
@@ -33,11 +34,12 @@ class ApiController extends Controller
     {
         $hotelId = $request->get('hotelId');
 
-        $em = $this->container->get('doctrine.orm.entity_manager');
+        $reviewRepository = $this->getDoctrine()->getRepository('App:Review');
+
         if ($hotelId === null) {
-            $reviews = $em->getConnection()->executeQuery('SELECT * FROM review')->fetchAll(\PDO::FETCH_ASSOC);
+            $reviews = $reviewRepository->findAll();
         } else {
-            $reviews = $em->getConnection()->executeQuery('SELECT * FROM review WHERE hotel_id = ' . $hotelId)->fetchAll(\PDO::FETCH_ASSOC);
+            $reviews = $reviewRepository->findByHotelId($hotelId);
         }
 
         return new Response(json_encode($reviews));
@@ -48,8 +50,9 @@ class ApiController extends Controller
      */
     public function getHotels(Request $request)
     {
-        $em = $this->container->get('doctrine.orm.entity_manager');
-        $hotels = $em->getConnection()->executeQuery('SELECT * FROM hotel')->fetchAll(\PDO::FETCH_ASSOC);
+        $hotelRepository = $this->getDoctrine()->getRepository('App:Hotel');
+
+        $hotels = $hotelRepository->findAll();
 
         return new Response(json_encode($hotels));
     }
