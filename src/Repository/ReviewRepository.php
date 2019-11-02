@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 
 class ReviewRepository extends EntityRepository
 {
@@ -14,5 +15,23 @@ class ReviewRepository extends EntityRepository
             ->setParameter('hotel_id', $hotelId)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    public function listAllReviews()
+    {
+        return $this->createQueryBuilder('review')
+            ->select()
+            ->getQuery()
+            ->getResult(Query::HYDRATE_ARRAY);
+    }
+
+    public function getReviewByHotelId($hotelId)
+    {
+        return $this->createQueryBuilder('review')
+            ->select()
+            ->where('review.hotelId = :hotel_id')
+            ->setParameter('hotel_id', $hotelId)
+            ->getQuery()
+            ->getResult(Query::HYDRATE_ARRAY);
     }
 }
