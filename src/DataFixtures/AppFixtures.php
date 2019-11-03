@@ -23,40 +23,40 @@ class AppFixtures extends Fixture
         $hotel->setName('Hotel Alexanderplatz');
         $hotel->setAddress('Alexanderplatz 1, 10409, Berlin');
         $hotel->setRooms(150);
-
+        $hotel->setParentId(null);
         $manager->persist($hotel);
 
-        $hotel = new Hotel();
-        $hotel->setId(2);
-        $hotel->setName('Hotel Alexanderplatz');
-        $hotel->setAddress('Alexanderplatz 1, 10409, Berlin');
-        $hotel->setRooms(150);
+        $hotel2 = new Hotel();
+        $hotel2->setId(2);
+        $hotel2->setName('Hotel Alexanderplatz-2');
+        $hotel2->setAddress('Alexanderplatz 2, 10409, Berlin');
+        $hotel2->setRooms(150);
+        $hotel2->setParentId($hotel);
+        $manager->persist($hotel2);
 
-        $manager->persist($hotel);
+        $hotel3 = new Hotel();
+        $hotel3->setId(3);
+        $hotel3->setName('Hotel Alexanderplatz-3');
+        $hotel3->setAddress('Alexanderplatz 3, 10409, Berlin');
+        $hotel3->setRooms(150);
+        $hotel3->setParentId($hotel);
+        $manager->persist($hotel3);
 
-        $hotel = new Hotel();
-        $hotel->setId(3);
-        $hotel->setName('Hotel Alexanderplatz');
-        $hotel->setAddress('Alexanderplatz 1, 10409, Berlin');
-        $hotel->setRooms(150);
+        $hotel4 = new Hotel();
+        $hotel4->setId(4);
+        $hotel4->setName('Hotel Alexanderplatz-4');
+        $hotel4->setAddress('Alexanderplatz 4, 10409, Berlin');
+        $hotel4->setRooms(150);
+        $hotel4->setParentId($hotel);
+        $manager->persist($hotel4);
 
-        $manager->persist($hotel);
-
-        $hotel = new Hotel();
-        $hotel->setId(4);
-        $hotel->setName('Hotel Alexanderplatz');
-        $hotel->setAddress('Alexanderplatz 1, 10409, Berlin');
-        $hotel->setRooms(150);
-
-        $manager->persist($hotel);
-
-        $hotel = new Hotel();
-        $hotel->setId(5);
-        $hotel->setName('Hotel Alexanderplatz');
-        $hotel->setAddress('Alexanderplatz 1, 10409, Berlin');
-        $hotel->setRooms(150);
-
-        $manager->persist($hotel);
+        $hotel5 = new Hotel();
+        $hotel5->setId(5);
+        $hotel5->setName('Hotel Alexanderplatz-5');
+        $hotel5->setAddress('Alexanderplatz 5, 10409, Berlin');
+        $hotel5->setRooms(150);
+        $hotel5->setParentId($hotel);
+        $manager->persist($hotel5);
     }
 
     public function loadReviews($manager)

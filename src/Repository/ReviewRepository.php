@@ -11,8 +11,8 @@ class ReviewRepository extends EntityRepository
     {
         return $this->createQueryBuilder('review')
             ->select('avg(review.score) as score')
-            ->where('review.hotelId = :hotel_id')
-            ->setParameter('hotel_id', $hotelId)
+            ->where('review.hotelId = :hotelId')
+            ->setParameter('hotelId', $hotelId)
             ->getQuery()
             ->getOneOrNullResult();
     }
