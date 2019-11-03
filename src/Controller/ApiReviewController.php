@@ -10,13 +10,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class ApiReviewController extends AbstractController
 {
     /**
-     * @Route("/api/average", name="average")
+     * @Route("/api/reviews/average", name="reviews_average")
      */
-    public function getAverage(Request $request): JsonResponse
+    public function getAverageAction(Request $request): JsonResponse
     {
         $hotelId = $request->get('hotelId');
 
-        if (is_null($hotelId)) {
+        if (!is_numeric($hotelId)) {
             throw new \Exception('Hotel not found.');
         }
 
@@ -30,7 +30,7 @@ class ApiReviewController extends AbstractController
     /**
      * @Route("/api/reviews", name="review_list")
      */
-    public function getReviews(Request $request): JsonResponse
+    public function listAction(Request $request): JsonResponse
     {
         $hotelId = $request->get('hotelId');
 

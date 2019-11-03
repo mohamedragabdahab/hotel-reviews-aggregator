@@ -27,9 +27,9 @@ class HotelRepository extends EntityRepository
 
     public function assignParent($hotelId, $parentId)
     {
-        $this->createQueryBuilder('hotel')
+        return $this->createQueryBuilder('hotel')
             ->update()
-            ->set('hotel.parent_id', $parentId)
+            ->set('hotel.parentId', $parentId)
             ->where('hotel.id = :hotelId')
             ->setParameter('hotelId', $hotelId)
             ->getQuery()
