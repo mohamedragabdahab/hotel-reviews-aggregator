@@ -7,7 +7,7 @@ use Doctrine\ORM\Query;
 
 class ReviewRepository extends EntityRepository
 {
-    public function getScoreAverage($hotelId)
+    public function getScoreAverage(int $hotelId)
     {
         return $this->createQueryBuilder('review')
             ->select('ROUND(AVG(review.score), 2) as scoreAverage')
@@ -25,7 +25,7 @@ class ReviewRepository extends EntityRepository
             ->getResult(Query::HYDRATE_ARRAY);
     }
 
-    public function getReviewByHotelId($hotelId)
+    public function getReviewByHotelId(int $hotelId)
     {
         return $this->createQueryBuilder('review')
             ->select()

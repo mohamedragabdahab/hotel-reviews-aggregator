@@ -24,7 +24,7 @@ class ApiHotelController extends AbstractController
     /**
      * @Route("/api/hotel/parent/assign", name="hotel_parent_assing", methods={"POST"})
      */
-    public function assignParentAction(Request $request)
+    public function assignParentAction(Request $request): JsonResponse
     {
         $hotelId = $request->get('hotelId');
         $parentId = $request->get('parentId');
@@ -39,7 +39,7 @@ class ApiHotelController extends AbstractController
     /**
      * @Route("/api/hotel/chain/list", name="hotel_chaing_list")
      */
-    public function listChainAction(Request $request)
+    public function listChainAction(Request $request): JsonResponse
     {
         $parentId = $request->get('parentId');
 

@@ -28,19 +28,19 @@ class ApiReviewController extends AbstractController
     }
 
     /**
-     * @Route("/api/reviews", name="review_list")
+     * @Route("/api/hotel/reviews", name="hotel_reviews")
      */
-    public function listAction(Request $request): JsonResponse
+    public function getReviewsAction(Request $request): JsonResponse
     {
         $hotelId = $request->get('hotelId');
 
+        if (!is_numeric($hotelId)) {
+            throw new \Exception('Hotel not found.');
+        }
+
         $reviewRepository = $this->getDoctrine()->getRepository('App:Review');
 
-        if ($hotelId === null) {
-            $reviews = $reviewRepository->listAllReviews();
-        } else {
-            $reviews = $reviewRepository->getReviewByHotelId($hotelId);
-        }
+        $reviews = $reviewRepository->getReviewByHotelId($hotelId);
 
         return new JsonResponse($reviews);
     }

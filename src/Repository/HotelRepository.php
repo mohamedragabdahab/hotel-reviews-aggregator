@@ -15,7 +15,7 @@ class HotelRepository extends EntityRepository
             ->getResult(Query::HYDRATE_ARRAY);
     }
 
-    public function listChain($parentId)
+    public function listChain(int $parentId)
     {
         return $this->createQueryBuilder('hotel')
             ->select()
@@ -25,7 +25,7 @@ class HotelRepository extends EntityRepository
             ->getResult(Query::HYDRATE_ARRAY);
     }
 
-    public function assignParent($hotelId, $parentId)
+    public function assignParent(int $hotelId, int $parentId)
     {
         return $this->createQueryBuilder('hotel')
             ->update()

@@ -36,7 +36,7 @@ class ApiHotelControllerTest extends WebTestCase
         $this->assertEquals('[{"id":2,"name":"Hotel Alexanderplatz-2","address":"Alexanderplatz 2, 10409, Berlin","rooms":150},{"id":3,"name":"Hotel Alexanderplatz-3","address":"Alexanderplatz 3, 10409, Berlin","rooms":150},{"id":4,"name":"Hotel Alexanderplatz-4","address":"Alexanderplatz 4, 10409, Berlin","rooms":150},{"id":5,"name":"Hotel Alexanderplatz-5","address":"Alexanderplatz 5, 10409, Berlin","rooms":150}]', $this->client->getResponse()->getContent());
     }
 
-    public function testNoListChain()
+    public function testEmptyListChain()
     {
         $this->client->request('GET', '/v1/api/hotel/chain/list?parentId=2');
 
