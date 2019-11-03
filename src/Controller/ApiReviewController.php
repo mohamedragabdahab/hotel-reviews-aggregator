@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ApiController extends AbstractController
+class ApiReviewController extends AbstractController
 {
     /**
      * @Route("/api/average", name="average")
@@ -43,17 +43,5 @@ class ApiController extends AbstractController
         }
 
         return new JsonResponse($reviews);
-    }
-
-    /**
-     * @Route("/api/hotels", name="hotel_list")
-     */
-    public function getHotels(Request $request): JsonResponse
-    {
-        $hotelRepository = $this->getDoctrine()->getRepository('App:Hotel');
-
-        $hotels = $hotelRepository->listAllHotels();
-
-        return new JsonResponse($hotels);
     }
 }

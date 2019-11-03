@@ -27,6 +27,12 @@ class Hotel
      */
     private $address;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Hotel", inversedBy="id")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     */
+    private $parentId;
+
     public function setId($id)
     {
         $this->id = $id;
@@ -94,5 +100,21 @@ class Hotel
     {
         $this->rooms = $rooms;
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParentId()
+    {
+        return $this->parentId;
+    }
+
+    /**
+     * @param mixed $parentId
+     */
+    public function setParentId($parentId): void
+    {
+        $this->parentId = $parentId;
     }
 }
