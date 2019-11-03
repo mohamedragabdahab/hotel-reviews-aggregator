@@ -10,7 +10,7 @@ class ReviewRepository extends EntityRepository
     public function getScoreAverage($hotelId)
     {
         return $this->createQueryBuilder('review')
-            ->select('avg(review.score) as score')
+            ->select('ROUND(AVG(review.score), 2) as scoreAverage')
             ->where('review.hotelId = :hotelId')
             ->setParameter('hotelId', $hotelId)
             ->getQuery()

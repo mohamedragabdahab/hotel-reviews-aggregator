@@ -18,12 +18,12 @@ class ApiReviewControllerTest extends WebTestCase
         $this->client->request('GET', '/v1/api/reviews/average?hotelId=1');
 
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertEquals('{"score":"6.2500"}', $this->client->getResponse()->getContent());
+        $this->assertEquals('{"scoreAverage":"6.25"}', $this->client->getResponse()->getContent());
 
         $this->client->request('GET', '/v1/api/reviews/average?hotelId=2');
 
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertEquals('{"score":"7.5000"}', $this->client->getResponse()->getContent());
+        $this->assertEquals('{"scoreAverage":"7.50"}', $this->client->getResponse()->getContent());
     }
 
     public function testException()
