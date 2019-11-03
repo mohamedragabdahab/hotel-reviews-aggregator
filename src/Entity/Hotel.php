@@ -33,6 +33,25 @@ class Hotel
      */
     private $parentId;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    public $rooms;
+
+    /**
+     * @var \DateTime
+     * @Gedmo\Mapping\Annotation\Timestampable(on="create")
+     * @Doctrine\ORM\Mapping\Column(type="datetime", name="created_at")
+     */
+    protected $createdAt;
+
+    /**
+     * @var \DateTime
+     * @Gedmo\Mapping\Annotation\Timestampable(on="update")
+     * @Doctrine\ORM\Mapping\Column(type="datetime", name="updated_at", options={"default"="1970-01-01 00:00:00"})
+     */
+    protected $updatedAt;
+
     public function setId($id)
     {
         $this->id = $id;
@@ -80,11 +99,6 @@ class Hotel
     }
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    public $rooms;
-
-    /**
      * @return mixed
      */
     public function getRooms()
@@ -116,5 +130,21 @@ class Hotel
     public function setParentId($parentId): void
     {
         $this->parentId = $parentId;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }

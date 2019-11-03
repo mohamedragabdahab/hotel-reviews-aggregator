@@ -32,6 +32,19 @@ class Review
      */
     private $score;
 
+    /**
+     * @var \DateTime
+     * @Gedmo\Mapping\Annotation\Timestampable(on="create")
+     * @Doctrine\ORM\Mapping\Column(type="datetime", name="created_at")
+     */
+    protected $createdAt;
+
+    /**
+     * @var \DateTime
+     * @Gedmo\Mapping\Annotation\Timestampable(on="update")
+     * @Doctrine\ORM\Mapping\Column(type="datetime", name="updated_at", options={"default"="1970-01-01 00:00:00"})
+     */
+    protected $updatedAt;
 
     public function setId($id)
     {
@@ -95,5 +108,21 @@ class Review
     {
         $this->score = $score;
         return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }

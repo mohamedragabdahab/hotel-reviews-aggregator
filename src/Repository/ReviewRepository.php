@@ -17,14 +17,6 @@ class ReviewRepository extends EntityRepository
             ->getOneOrNullResult();
     }
 
-    public function listAllReviews()
-    {
-        return $this->createQueryBuilder('review')
-            ->select()
-            ->getQuery()
-            ->getResult(Query::HYDRATE_ARRAY);
-    }
-
     public function getReviewByHotelId(int $hotelId)
     {
         return $this->createQueryBuilder('review')
